@@ -13,8 +13,8 @@
 			<directory>${project.basedir}/releases/include</directory>
 			<outputDirectory>.</outputDirectory>
 			<includes>
-				<include>license.txt</include>
-				<include>XR3Player Manual.pdf</include>	
+				<!-- <include>license.txt</include> -->
+				<!-- <include>XR3Player Manual.pdf</include> -->
 				<!-- <include>XR3Player.exe</include> -->				
 			</includes>
 		</fileSet>
@@ -24,8 +24,8 @@
 			<includes>
 			    <!-- <include>XR3Player.exe</include> -->
 				<include>*.jar</include>
-				<include>XR3Player_lib</include>
-				<include>XR3Player_lib/*</include>
+				<include>XR3Converter_lib</include>
+				<include>XR3Converter_lib/*</include>
 			</includes>
 		</fileSet>
 	</fileSets>
