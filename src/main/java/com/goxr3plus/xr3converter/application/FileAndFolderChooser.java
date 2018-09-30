@@ -27,6 +27,7 @@ public class FileAndFolderChooser {
 	
 	private final ExtensionFilter audioFilter;
 	private final ExtensionFilter videoFilter;
+	private final ExtensionFilter audioVideoFilter;
 	
 	/**
 	 * Constructor
@@ -42,6 +43,10 @@ public class FileAndFolderChooser {
 		//Special Video Files Filter
 		videoFilter = new FileChooser.ExtensionFilter("Video Files",
 				Stream.of(FileTypeTool.POPULAR_VIDEO_EXTENSIONS_LIST).flatMap(List::stream).map(m -> "*." + m).collect(Collectors.toList()));
+		
+		//Special Audio+Video Files Filter
+		audioVideoFilter = new FileChooser.ExtensionFilter("Audio/Video Files", Stream.of(FileTypeTool.POPULAR_AUDIO_EXTENSIONS_LIST, FileTypeTool.POPULAR_VIDEO_EXTENSIONS_LIST)
+				.flatMap(List::stream).map(m -> "*." + m).collect(Collectors.toList()));
 		
 	}
 	
@@ -118,7 +123,7 @@ public class FileAndFolderChooser {
 	 */
 	public List<File> importAudioAndVideoFiles(Stage window) {
 		mediaFileChooser.getExtensionFilters().clear();
-		mediaFileChooser.getExtensionFilters().addAll(audioFilter, videoFilter);
+		mediaFileChooser.getExtensionFilters().addAll(audioVideoFilter);
 		mediaFileChooser.setTitle("Select or Drag and Drop Files || Folders into the List");
 		List<File> files = mediaFileChooser.showOpenMultipleDialog(window);
 		if (files != null) {

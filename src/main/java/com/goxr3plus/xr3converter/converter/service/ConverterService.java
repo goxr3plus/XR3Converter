@@ -20,7 +20,7 @@ import ws.schild.jave.MultimediaInfo;
 import ws.schild.jave.MultimediaObject;
 
 /**
- * Used by XR3Player to convert all unsupported audio formats to .mp3
+ * Converter Service
  * 
  * @author GOXR3PLUSSTUDIO
  *
@@ -110,12 +110,22 @@ public class ConverterService extends Service<Boolean> {
 					return false;
 				}
 				
-				//Check if it is already .mp3
+				//Output extension
+				String outputExtension = controller.getOutputExtension().getText();
+				String outputExtensionNoPeriod = outputExtension.replaceAll("\\Q.\\E", "");
+				
+				//Converter
 				controller.getTableViewer().getTableView().getItems().forEach(media -> {
 					String absolutePath = media.getFilePath();
+					String fileName = FileTools.getFileName(media.getFilePath());
 					
-					if (!"mp3".equals(FileTools.getFileExtension(absolutePath))) {
-						newFileAsbolutePath = folderName + File.separator + FileTools.getFileTitle(FileTools.getFileName(absolutePath)) + ".mp3";
+					//Check if it is already matching output extension
+					if (!outputExtensionNoPeriod.equals(FileTools.getFileExtension(absolutePath))) {
+						
+						//Set Message
+						Platform.runLater(() -> controller.getDescriptionArea().appendText("\nConverting: [ " + fileName + " ]\n"));
+						
+						newFileAsbolutePath = folderName + File.separator + FileTools.getFileTitle(absolutePath) + outputExtension;
 						
 						//Convert any audio format to .mp3
 						try {
@@ -142,9 +152,17 @@ public class ConverterService extends Service<Boolean> {
 							encoder = encoder != null ? encoder : new Encoder();
 							encoder.encode(new MultimediaObject(source), target, attrs, listener);
 							
+							//Set Message
+							Platform.runLater(() -> controller.getDescriptionArea().appendText("\nConverted: [ " + fileName + " ] -> 100% \n"));
+							
 						} catch (Exception ex) {
 							ex.printStackTrace();
 						}
+					} else { //Just copy
+						//Set Message
+						Platform.runLater(() -> controller.getDescriptionArea().appendText("\nCopying: [ " + fileName + " ]\n"));
+						
+						FileTools.copy(absolutePath, folderName + File.separator + FileTools.getFileName(absolutePath));
 					}
 				});
 				

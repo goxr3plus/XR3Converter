@@ -79,7 +79,7 @@ public class InputService extends Service<Void> {
 				//Find real path for symbolic links etc
 				.map(file -> new File(IOTool.getRealPathFromFile(file.getAbsolutePath()).getFileAbsolutePath()))
 				//Filter only the files we want
-				.filter(file -> file.isDirectory() || ( file.isFile() && FileTypeTool.isAudioSupported(file.getAbsolutePath()) ))
+				.filter(file -> file.isDirectory() || ( file.isFile() ))
 				//Collect everything to a list
 				.collect(Collectors.toList());
 		// Security Value
@@ -194,7 +194,7 @@ public class InputService extends Service<Void> {
 											public FileVisitResult visitFile(Path filePath , BasicFileAttributes attrs) throws IOException {
 												
 												// supported?
-												if (FileTypeTool.isAudioSupported(filePath + ""))
+												if (FileTypeTool.isAudioSupported(filePath + "") || FileTypeTool.isVideoSupported(filePath + ""))
 													finalList.add(new Media(filePath.toString()));
 												
 												// update progress
@@ -242,7 +242,7 @@ public class InputService extends Service<Void> {
 							@Override
 							public FileVisitResult visitFile(Path filePath , BasicFileAttributes attrs) throws IOException {
 								
-								if (FileTypeTool.isAudioSupported(filePath + ""))
+								if (FileTypeTool.isAudioSupported(filePath + "") || FileTypeTool.isVideoSupported(filePath + ""))
 									++count[0];
 								
 								return isCancelled() ? FileVisitResult.TERMINATE : FileVisitResult.CONTINUE;

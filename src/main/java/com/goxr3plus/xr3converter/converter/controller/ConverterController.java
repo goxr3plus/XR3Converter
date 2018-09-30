@@ -199,12 +199,14 @@ public class ConverterController extends StackPane {
 		
 		// ConvertButton
 		convertButton.setOnAction(a -> {
-			System.out.println("Coverting..");
 			if (outputFolderTextField.getText().isEmpty())
 				JavaFXTools.showNotification("No output folder", "Please select an output folder", Duration.seconds(5), NotificationType.INFORMATION);
 			else
 				converterService.convert();
 		});
+		
+		// clearList
+		clearList.setOnAction(a -> tableViewer.getTableView().getItems().clear());
 	}
 	
 	/**
@@ -279,6 +281,10 @@ public class ConverterController extends StackPane {
 	
 	public TextField getOutputFolderTextField() {
 		return outputFolderTextField;
+	}
+	
+	public MenuButton getOutputExtension() {
+		return outputExtension;
 	}
 	
 }
