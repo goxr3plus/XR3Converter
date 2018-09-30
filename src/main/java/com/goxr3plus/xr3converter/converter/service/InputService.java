@@ -121,7 +121,8 @@ public class InputService extends Service<Void> {
 		controller.getCancelButton().setDisable(true);
 		
 		//Set the data to the TableView
-		this.controller.getTableViewer().getTableView().setItems(FXCollections.observableArrayList(finalList));
+		if (finalList != null)
+			this.controller.getTableViewer().getTableView().setItems(FXCollections.observableArrayList(finalList));
 		
 		// Security Value
 		controller.workOnProgress = WorkOnProgress.NONE;

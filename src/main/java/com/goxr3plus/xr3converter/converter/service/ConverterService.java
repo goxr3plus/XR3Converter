@@ -103,7 +103,7 @@ public class ConverterService extends Service<Boolean> {
 						() -> controller.getDescriptionArea().setText("\nConverting: [ " + controller.getTableViewer().getTableView().getItems().size() + " ] Files...\n"));
 				
 				//Create the media folder if not existing
-				String folderName = controller.getOutputFolderTextField().getText() + "Media";
+				String folderName = controller.getOutputFolderTextField().getText() + File.separator + "Media";
 				if (!FileTools.createFileOrFolder(folderName, FileType.DIRECTORY)) {
 					JavaFXTools.showNotification("Internal Error", "Can't create output folder.", Duration.seconds(4), NotificationType.WARNING);
 					succeeded = false;

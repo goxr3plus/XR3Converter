@@ -190,8 +190,16 @@ public class ConverterController extends StackPane {
 				inputService.start(Arrays.asList(file));
 		});
 		
+		// browserFolderButton
+		browserFolderButton.setOnAction(a -> {
+			File file = fileChooser.selectFolder(Main.window);
+			if (file != null)
+				this.outputFolderTextField.setText(file.getAbsolutePath());
+		});
+		
 		// ConvertButton
 		convertButton.setOnAction(a -> {
+			System.out.println("Coverting..");
 			if (outputFolderTextField.getText().isEmpty())
 				JavaFXTools.showNotification("No output folder", "Please select an output folder", Duration.seconds(5), NotificationType.INFORMATION);
 			else
