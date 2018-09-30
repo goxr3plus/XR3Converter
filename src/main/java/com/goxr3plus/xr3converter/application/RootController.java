@@ -1,24 +1,34 @@
-package main.java.com.goxr3plus.xr3converter.controllers;
+package main.java.com.goxr3plus.xr3converter.application;
 
 import java.io.IOException;
 
+import com.jfoenix.controls.JFXTabPane;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import main.java.com.goxr3plus.xr3converter.storage.RunTimeVars;
 
-public class BasicFXMLController {
+public class RootController extends StackPane {
 	
 	//--------------------------------------------------------------
+	
+	@FXML
+	private BorderPane borderPane;
+	
+	@FXML
+	private JFXTabPane tabPane;
 	
 	// -------------------------------------------------------------
 	
 	/**
 	 * Constructor.
 	 */
-	public BasicFXMLController() {
+	public RootController() {
 		
 		// ------------------------------------FXMLLOADER ----------------------------------------
-		FXMLLoader loader = new FXMLLoader(getClass().getResource(RunTimeVars.FXMLS + "name.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(RunTimeVars.FXMLS + "RootController.fxml"));
 		loader.setController(this);
 		loader.setRoot(this);
 		
@@ -37,5 +47,14 @@ public class BasicFXMLController {
 	private void initialize() {
 		
 	}
+	
+	public BorderPane getBorderPane() {
+		return borderPane;
+	}
+
+	public JFXTabPane getTabPane() {
+		return tabPane;
+	}
+
 	
 }

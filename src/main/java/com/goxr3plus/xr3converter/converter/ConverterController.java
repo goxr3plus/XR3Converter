@@ -1,29 +1,24 @@
-package main.java.com.goxr3plus.xr3converter.controllers;
+package main.java.com.goxr3plus.xr3converter.converter;
 
 import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
 import main.java.com.goxr3plus.xr3converter.storage.RunTimeVars;
 
-public class RootController extends StackPane {
+public class ConverterController {
 	
 	//--------------------------------------------------------------
-	
-	@FXML
-	private BorderPane borderPane;
 	
 	// -------------------------------------------------------------
 	
 	/**
 	 * Constructor.
 	 */
-	public RootController() {
+	public ConverterController() {
 		
 		// ------------------------------------FXMLLOADER ----------------------------------------
-		FXMLLoader loader = new FXMLLoader(getClass().getResource(RunTimeVars.FXMLS + "RootController.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(RunTimeVars.FXMLS + "name.fxml"));
 		loader.setController(this);
 		loader.setRoot(this);
 		
@@ -41,10 +36,6 @@ public class RootController extends StackPane {
 	@FXML
 	private void initialize() {
 		
-	}
-	
-	public BorderPane getBorderPane() {
-		return borderPane;
 	}
 	
 }

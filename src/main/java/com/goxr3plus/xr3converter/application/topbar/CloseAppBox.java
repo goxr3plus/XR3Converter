@@ -1,4 +1,4 @@
-package main.java.com.goxr3plus.xr3converter.controllers;
+package main.java.com.goxr3plus.xr3converter.application.topbar;
 
 import java.io.IOException;
 

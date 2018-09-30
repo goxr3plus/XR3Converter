@@ -5,8 +5,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.java.com.goxr3plus.fxborderlessscene.borderless.BorderlessScene;
-import main.java.com.goxr3plus.xr3converter.controllers.RootController;
-import main.java.com.goxr3plus.xr3converter.controllers.TopBar;
+import main.java.com.goxr3plus.xr3converter.application.topbar.TopBar;
 import main.java.com.goxr3plus.xr3converter.storage.RunTimeVars;
 import main.java.com.goxr3plus.xr3converter.tools.JavaFXTools;
 
