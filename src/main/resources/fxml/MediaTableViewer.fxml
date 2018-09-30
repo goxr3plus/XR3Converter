@@ -5,9 +5,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
-<?import org.fxmisc.richtext.InlineCssTextArea?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <fx:root prefHeight="444.0" prefWidth="804.0" stylesheets="@../css/application.css" type="StackPane" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -16,19 +14,9 @@
          <center>
             <TableView fx:id="tableView" styleClass="media-table-view" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
                <columns>
-                  <TableColumn fx:id="number" maxWidth="55.0" minWidth="55.0" prefWidth="55.0" text="#" />
                   <TableColumn fx:id="title" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="50.0" text="Name" />
-                  <TableColumn fx:id="duration" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" text="Length">
-                     <graphic>
-                        <FontIcon iconColor="WHITE" iconLiteral="fa-clock-o" iconSize="24" />
-                     </graphic>
-                  </TableColumn>
                   <TableColumn fx:id="fileType" maxWidth="90.0" minWidth="90.0" prefWidth="90.0" text="Extension" />
-                  <TableColumn fx:id="fileSize" maxWidth="250.0" minWidth="130.0" prefWidth="139.0" text="File Size">
-                     <graphic>
-                        <FontIcon iconColor="WHITE" iconLiteral="fa-inbox" iconSize="24" />
-                     </graphic>
-                  </TableColumn>
+                  <TableColumn fx:id="fileSize" maxWidth="250.0" minWidth="130.0" prefWidth="139.0" text="File Size" />
                   <TableColumn fx:id="filePath" maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="150.0" text="File Path" />
                </columns>
                <padding>
@@ -39,17 +27,6 @@
                </columnResizePolicy>
             </TableView>
          </center>
-         <bottom>
-            <HBox style="-fx-background-color: #151515;" BorderPane.alignment="CENTER">
-               <children>
-                  <InlineCssTextArea fx:id="detailCssTextArea" editable="false" maxHeight="-Infinity" minHeight="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="22.0" styleClass="inline-css-text-area" HBox.hgrow="ALWAYS" />
-                  <Label fx:id="quickSearchTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #151515; -fx-text-fill: white; -fx-font-weight: bold;" text="Search...">
-                     <padding>
-                        <Insets right="5.0" />
-                     </padding></Label>
-               </children>
-            </HBox>
-         </bottom>
       </BorderPane>
       <Label fx:id="dragAndDropLabel" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-border-color: transparent; -fx-font-size: 25; -fx-background-color: #202020F1;" styleClass="applicationSettingsLabel2" text="Drop your files" textAlignment="CENTER" visible="false" wrapText="true">
          <graphic>
