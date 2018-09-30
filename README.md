@@ -1,6 +1,11 @@
 # XR3Converter
 Powerful JavaFX application for converting any audio to any audio and any video to any video or audio.
 
+[![Latest Version](https://img.shields.io/github/release/goxr3plus/XR3Converter.svg?style=flat-square)](https://github.com/goxr3plus/XR3Converter/releases)
+[![HitCount](http://hits.dwyl.io/goxr3plus/XR3Converter.svg)](http://hits.dwyl.io/goxr3plus/XR3Converter)
+<a href="https://sourceforge.net/projects/XR3Converter/files/latest/download" rel="nofollow">
+[![Total Downloads](https://img.shields.io/github/downloads/goxr3plus/XR3Converter/total.svg)](https://github.com/XR3Converter/XR3Converter/releases)
+
 # Requirements 
 
 JAVA 10.0.2 
