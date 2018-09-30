@@ -1,7 +1,7 @@
 /**
  * 
  */
-package main.java.com.goxr3plus.xr3converter.tools;
+package main.java.com.goxr3plus.xr3converter.tools.fx;
 
 import java.io.File;
 import java.util.List;

@@ -16,7 +16,7 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.StackPane;
 import main.java.com.goxr3plus.xr3converter.converter.model.Media;
 import main.java.com.goxr3plus.xr3converter.storage.RunTimeVars;
-import main.java.com.goxr3plus.xr3converter.tools.JavaFXTools;
+import main.java.com.goxr3plus.xr3converter.tools.fx.JavaFXTools;
 
 public class MediaTableViewer extends StackPane {
 	
@@ -43,6 +43,7 @@ public class MediaTableViewer extends StackPane {
 	// -------------------------------------------------------------
 	
 	private final ConverterController controller;
+
 	
 	/**
 	 * Constructor.
@@ -121,10 +122,6 @@ public class MediaTableViewer extends StackPane {
 		
 		dragAndDropLabel.setOnDragOver(dragOver -> {
 			
-			// The drag must come from source other than the owner
-			System.out.println(dragOver.getGestureSource());
-			//if(dragOver.getGestureSource().toString().contains("MediaViewer") && dragOver.getGestureSource().)
-			
 			if (dragOver.getDragboard().hasFiles() && dragOver.getGestureSource() != tableView)
 				dragOver.acceptTransferModes(TransferMode.LINK);
 			
@@ -159,5 +156,9 @@ public class MediaTableViewer extends StackPane {
 	public void copySelectedMediaToClipBoard() {
 		JavaFXTools.setClipBoard(tableView.getSelectionModel().getSelectedItems().stream().map(s -> new File(s.getFilePath())).collect(Collectors.toList()));
 	}
-	
+
+	public TableView<Media> getTableView() {
+		return tableView;
+	}
+
 }

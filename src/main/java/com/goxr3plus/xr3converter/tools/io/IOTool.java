@@ -1,4 +1,4 @@
-package main.java.com.goxr3plus.xr3converter.tools;
+package main.java.com.goxr3plus.xr3converter.tools.io;
 
 import java.io.File;
 import java.io.IOException;

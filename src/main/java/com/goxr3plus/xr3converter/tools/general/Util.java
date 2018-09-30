@@ -1,4 +1,4 @@
-package main.java.com.goxr3plus.xr3converter.tools;
+package main.java.com.goxr3plus.xr3converter.tools.general;
 
 public class Util {
 	

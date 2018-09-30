@@ -19,8 +19,8 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import main.java.com.goxr3plus.xr3converter.converter.service.InputService;
 import main.java.com.goxr3plus.xr3converter.storage.RunTimeVars;
-import main.java.com.goxr3plus.xr3converter.tools.JavaFXTools;
-import main.java.com.goxr3plus.xr3converter.tools.NotificationType;
+import main.java.com.goxr3plus.xr3converter.tools.fx.JavaFXTools;
+import main.java.com.goxr3plus.xr3converter.tools.fx.NotificationType;
 
 public class ConverterController extends StackPane {
 	
@@ -71,7 +71,7 @@ public class ConverterController extends StackPane {
 	
 	// --------------------------------------------
 	
-	public MediaTableViewer tableViewer;
+	private MediaTableViewer tableViewer;
 	
 	// ---------Security---------------------------
 	
@@ -86,7 +86,7 @@ public class ConverterController extends StackPane {
 	/**
 	 * Constructor.
 	 */
-	public ConverterController() {	
+	public ConverterController() {
 		this.inputService = new InputService(this);
 		
 		// ------------------------------------FXMLLOADER ----------------------------------------
@@ -119,6 +119,9 @@ public class ConverterController extends StackPane {
 			Bounds bounds = toolsMenuButton.localToScreen(toolsMenuButton.getBoundsInLocal());
 			toolsContextMenu.show(toolsMenuButton, bounds.getMaxX(), bounds.getMinY());
 		});
+		
+		// loadingVBox
+		loadingVBox.setVisible(false);
 	}
 	
 	/**
@@ -169,9 +172,13 @@ public class ConverterController extends StackPane {
 	public TextArea getDescriptionArea() {
 		return descriptionArea;
 	}
-
+	
 	public InputService getInputService() {
 		return inputService;
+	}
+
+	public MediaTableViewer getTableViewer() {
+		return tableViewer;
 	}
 	
 }

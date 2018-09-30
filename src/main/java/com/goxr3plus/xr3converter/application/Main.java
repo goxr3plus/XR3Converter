@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.java.com.goxr3plus.fxborderlessscene.borderless.BorderlessScene;
 import main.java.com.goxr3plus.xr3converter.storage.RunTimeVars;
-import main.java.com.goxr3plus.xr3converter.tools.JavaFXTools;
+import main.java.com.goxr3plus.xr3converter.tools.fx.JavaFXTools;
 
 public class Main extends Application {
 	

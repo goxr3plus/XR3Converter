@@ -6,14 +6,14 @@ package main.java.com.goxr3plus.xr3converter.converter.model;
 import java.io.File;
 
 import javafx.beans.property.SimpleStringProperty;
-import main.java.com.goxr3plus.xr3converter.tools.FileTools;
+import main.java.com.goxr3plus.xr3converter.tools.io.FileTools;
 
 /**
  * Media Files Model
  *
  * @author GOXR3PLUS
  */
-public abstract class Media {
+public class Media {
 	
 	/** The title. */
 	private SimpleStringProperty title;
