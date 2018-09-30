@@ -1,14 +1,23 @@
 package main.java.com.goxr3plus.xr3converter.tools.io;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.text.SimpleDateFormat;
+import java.util.LinkedList;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+
+import javafx.util.Duration;
+import main.java.com.goxr3plus.xr3converter.tools.fx.JavaFXTools;
+import main.java.com.goxr3plus.xr3converter.tools.fx.NotificationType;
 
 public class FileTools {
 	
@@ -183,6 +192,208 @@ public class FileTools {
 		// return path.substring(i + 1).toLowerCase()
 		//
 		// return null
+	}
+	
+	/**
+	 * Creates the given File or Folder if not exists and returns the result
+	 * 
+	 * @param absoluteFilePath
+	 *            The absolute path of the File|Folder
+	 * @param fileType
+	 *            Create DIRECTORY OR FILE ?
+	 * @return True if exists or have been successfully created , otherwise false
+	 */
+	public static boolean createFileOrFolder(String absoluteFilePath , FileType fileType) {
+		return createFileOrFolder(new File(absoluteFilePath), fileType);
+	}
+	
+	/**
+	 * Creates the given File or Folder if not exists and returns the result
+	 * 
+	 * @param absoluteFilePath
+	 *            The absolute path of the File|Folder
+	 * @param fileType
+	 *            Create DIRECTORY OR FILE ?
+	 * @return True if exists or have been successfully created , otherwise false
+	 */
+	public static boolean createFileOrFolder(File file , FileType fileType) {
+		//Already exists?
+		if (file.exists())
+			return true;
+		//Directory?
+		if (fileType == FileType.DIRECTORY)
+			return file.mkdir();
+		//File?
+		try {
+			return file.createNewFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	/**
+	 * Opens the file with the System default file explorer.
+	 *
+	 * @param path
+	 *            the path
+	 */
+	public static void openFileInExplorer(String path) {
+		
+		// Open the Default Browser
+		if (System.getProperty("os.name").toLowerCase().contains("win")) {
+			JavaFXTools.showNotification("Message", "Opening in File Explorer:\n" + getFileName(path), Duration.millis(1500), NotificationType.INFORMATION);
+			
+			//START: --NEEDS TO BE FIXED!!!!!!----------------NOT WORKING WELL-----
+			
+			path = path.trim().replaceAll(" +", " ");
+			String selectPath = "/select," + path;
+			
+			//START: Strip one SPACE among consecutive spaces
+			LinkedList<String> list = new LinkedList<>();
+			StringBuilder sb = new StringBuilder();
+			boolean flag = true;
+			
+			for (int i = 0; i < selectPath.length(); i++) {
+				if (i == 0) {
+					sb.append(selectPath.charAt(i));
+					continue;
+				}
+				
+				if (selectPath.charAt(i) == ' ' && flag) {
+					list.add(sb.toString());
+					sb.setLength(0);
+					flag = false;
+					continue;
+				}
+				
+				if (!flag && selectPath.charAt(i) != ' ')
+					flag = true;
+				
+				sb.append(selectPath.charAt(i));
+			}
+			
+			list.add(sb.toString());
+			
+			list.addFirst("explorer.exe");
+			//END: Strip one SPACE among consecutive spaces
+			
+			//END: --NEEDS TO BE FIXED!!!!!!----------------NOT WORKING WELL-----
+			
+			try {
+				//Open in Explorer and Highlight
+				new ProcessBuilder(list).start();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+				JavaFXTools.showNotification("Folder Explorer Fail", "Failed to open file explorer.", Duration.millis(1500), NotificationType.WARNING);
+			}
+		} else { //For MacOS and Linux
+			try {
+				Desktop.getDesktop().browseFileDirectory(new File(path));
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				JavaFXTools.showNotification("Not Supported", "This function is only supported in Windows \n I am trying my best to implement it and on other operating systems :)",
+						Duration.millis(1500), NotificationType.WARNING);
+			}
+		}
+		
+	}
+	
+	/**
+	 * Copy a file from source to destination.
+	 *
+	 * @param source
+	 *            the source
+	 * @param destination
+	 *            the destination
+	 * @return True if succeeded , False if not
+	 */
+	public static boolean copy(String source , String destination) {
+		boolean succeess = true;
+		
+		//System.out.println("Copying ->" + source + "\n\tto ->" + destination)
+		
+		try {
+			Files.copy(Paths.get(source), Paths.get(destination), StandardCopyOption.REPLACE_EXISTING);
+		} catch (IOException ex) {
+			ex.printStackTrace();
+			succeess = false;
+		}
+		
+		return succeess;
+		
+	}
+	
+	/**
+	 * Copy a file from source to destination.
+	 *
+	 * @param source
+	 *            the source
+	 * @param destination
+	 *            the destination
+	 * @return True if succeeded , False if not
+	 */
+	public static boolean copy(InputStream source , String destination) {
+		boolean succeess = true;
+		
+		//System.out.println("Copying ->" + source + "\n\tto ->" + destination)
+		
+		try {
+			System.out.println(Files.copy(source, Paths.get(destination), StandardCopyOption.REPLACE_EXISTING));
+		} catch (IOException ex) {
+			ex.printStackTrace();
+			succeess = false;
+		}
+		
+		return succeess;
+	}
+	
+	/**
+	 * Moves a file to a different location.
+	 *
+	 * @param source
+	 *            the source
+	 * @param destination
+	 *            the dest
+	 * @return true, if successful
+	 */
+	public static boolean move(String source , String destination) {
+		boolean succeess = true;
+		
+		//System.out.println("Moving ->" + source + "\n\tto ->" + destination)
+		
+		try {
+			Files.move(Paths.get(source), Paths.get(destination), StandardCopyOption.REPLACE_EXISTING);
+		} catch (IOException ex) {
+			ex.printStackTrace();
+			succeess = false;
+		}
+		
+		return succeess;
+	}
+	
+	/**
+	 * Deletes Directory of File.
+	 *
+	 * @param source
+	 *            The File to be deleted | either if it is directory or File
+	 * @return true, if successful
+	 */
+	public static boolean deleteFile(File source) {
+		
+		if (source.isDirectory())  // Directory
+			try {
+				FileUtils.deleteDirectory(source);
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		else if (source.isFile() && !source.delete()) { // File
+			JavaFXTools.showNotification("Message", "Can't delete file:\n(" + source.getName() + ") cause is in use by a program.", Duration.millis(2000),
+					NotificationType.WARNING);
+			return false;
+		}
+		
+		return true;
 	}
 	
 }

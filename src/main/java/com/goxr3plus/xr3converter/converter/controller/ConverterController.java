@@ -2,6 +2,8 @@ package main.java.com.goxr3plus.xr3converter.converter.controller;
 
 import java.io.IOException;
 
+import com.jfoenix.controls.JFXButton;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
@@ -12,11 +14,13 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import main.java.com.goxr3plus.xr3converter.converter.service.ConverterService;
 import main.java.com.goxr3plus.xr3converter.converter.service.InputService;
 import main.java.com.goxr3plus.xr3converter.storage.RunTimeVars;
 import main.java.com.goxr3plus.xr3converter.tools.fx.JavaFXTools;
@@ -51,6 +55,21 @@ public class ConverterController extends StackPane {
 	private MenuItem clearList;
 	
 	@FXML
+	private HBox searchBarHBox1;
+	
+	@FXML
+	private TextField outputFolderTextField;
+	
+	@FXML
+	private MenuButton outputExtension;
+	
+	@FXML
+	private JFXButton browserFolderButton;
+	
+	@FXML
+	private JFXButton convertButton;
+	
+	@FXML
 	private VBox loadingVBox;
 	
 	@FXML
@@ -68,6 +87,8 @@ public class ConverterController extends StackPane {
 	// ---------Services---------------------------
 	
 	private final InputService inputService;
+	
+	private final ConverterService converterService;
 	
 	// --------------------------------------------
 	
@@ -88,6 +109,7 @@ public class ConverterController extends StackPane {
 	 */
 	public ConverterController() {
 		this.inputService = new InputService(this);
+		this.converterService = new ConverterService(this);
 		
 		// ------------------------------------FXMLLOADER ----------------------------------------
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(RunTimeVars.FXMLS + "ConverterController.fxml"));
@@ -122,6 +144,14 @@ public class ConverterController extends StackPane {
 		
 		// loadingVBox
 		loadingVBox.setVisible(false);
+		
+		// ConvertButton
+		convertButton.setOnAction(a -> {
+			if (outputFolderTextField.getText().isEmpty())
+				JavaFXTools.showNotification("No output folder", "Please select an output folder", Duration.seconds(5), NotificationType.INFORMATION);
+			else
+				converterService.convert();
+		});
 	}
 	
 	/**
@@ -140,6 +170,15 @@ public class ConverterController extends StackPane {
 			showMessage(workOnProgress.toString());
 		
 		return isFree;
+	}
+	
+	/**
+	 * Unbind.
+	 */
+	public void unbind() {
+		loadingVBox.visibleProperty().unbind();
+		loadingVBox.setVisible(false);
+		loadingProgressBar.progressProperty().unbind();
 	}
 	
 	/**
@@ -176,9 +215,18 @@ public class ConverterController extends StackPane {
 	public InputService getInputService() {
 		return inputService;
 	}
-
+	
 	public MediaTableViewer getTableViewer() {
 		return tableViewer;
 	}
+	
+	public void setDescriptionArea(TextArea descriptionArea) {
+		this.descriptionArea = descriptionArea;
+	}
+
+	public TextField getOutputFolderTextField() {
+		return outputFolderTextField;
+	}
+
 	
 }

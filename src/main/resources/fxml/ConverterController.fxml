@@ -87,7 +87,7 @@
                      <children>
                         <Label styleClass="white-black-label" text="Save to folder:" />
                         <Label layoutX="10.0" layoutY="15.0" styleClass="white-black-label" text="Output Format:" GridPane.rowIndex="1" />
-                        <TextField fx:id="outputTextField" editable="false" maxWidth="1.7976931348623157E308" promptText="press browse..." styleClass="dark-text-field" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
+                        <TextField fx:id="outputFolderTextField" editable="false" maxWidth="1.7976931348623157E308" promptText="press browse..." styleClass="dark-text-field" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
                         <MenuButton fx:id="outputExtension" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="dark-menu-button" text=".mp3" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
                           <items>
                             <MenuItem mnemonicParsing="false" text="Action 1" />

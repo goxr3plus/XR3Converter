@@ -111,6 +111,9 @@ public class InputService extends Service<Void> {
 	 */
 	private void done() {
 		
+		//Unbind
+		controller.unbind();
+		
 		//Erase the lists
 		givenList = null;
 		

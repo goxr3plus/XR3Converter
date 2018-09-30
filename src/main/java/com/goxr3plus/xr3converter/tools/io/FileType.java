@@ -6,5 +6,5 @@ package main.java.com.goxr3plus.xr3converter.tools.io;
  */
 public enum FileType {
 	
-	SYMBOLIC_LINK, HARD_LINK, SHORTCUT, ORIGINAL_FILE,UNKNOWN;
+	SYMBOLIC_LINK, HARD_LINK, SHORTCUT, ORIGINAL_FILE,UNKNOWN,DIRECTORY;
 }
