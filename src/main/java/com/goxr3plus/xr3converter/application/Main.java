@@ -5,7 +5,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.java.com.goxr3plus.fxborderlessscene.borderless.BorderlessScene;
-import main.java.com.goxr3plus.xr3converter.application.topbar.TopBar;
 import main.java.com.goxr3plus.xr3converter.storage.RunTimeVars;
 import main.java.com.goxr3plus.xr3converter.tools.JavaFXTools;
 
@@ -22,6 +21,8 @@ public class Main extends Application {
 	public static RootController rootController;
 	
 	public static TopBar topBar;
+	
+	public static DragViewer dragViewer;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -56,12 +57,15 @@ public class Main extends Application {
 	 */
 	private void initControllers() {
 		
-		//TopBar
+		// TopBar
 		topBar = new TopBar();
 		
-		//RootController
+		// RootController
 		rootController = new RootController();
 		rootController.getBorderPane().setTop(topBar);
+		
+		// DragViewer
+		dragViewer = new DragViewer();
 		
 	}
 	

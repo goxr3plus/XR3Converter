@@ -1,7 +1,7 @@
 /*
  * 
  */
-package main.java.com.goxr3plus.xr3converter.application.topbar;
+package main.java.com.goxr3plus.xr3converter.application;
 
 import java.io.IOException;
 import java.util.logging.Level;

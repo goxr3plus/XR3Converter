@@ -1,7 +1,7 @@
 /*
  * 
  */
-package main.java.com.goxr3plus.xr3converter.converter;
+package main.java.com.goxr3plus.xr3converter.converter.model;
 
 import java.io.File;
 
@@ -54,6 +54,14 @@ public abstract class Media {
 	
 	public SimpleStringProperty filePathProperty() {
 		return filePath;
+	}
+	
+	public String getFilePath() {
+		return filePath.get();
+	}
+	
+	public String getTitle() {
+		return title.get();
 	}
 	
 }

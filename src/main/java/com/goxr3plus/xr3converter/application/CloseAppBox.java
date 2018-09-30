@@ -1,4 +1,4 @@
-package main.java.com.goxr3plus.xr3converter.application.topbar;
+package main.java.com.goxr3plus.xr3converter.application;
 
 import java.io.IOException;
 
@@ -9,7 +9,6 @@ import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.StackPane;
-import main.java.com.goxr3plus.xr3converter.application.Main;
 import main.java.com.goxr3plus.xr3converter.storage.RunTimeVars;
 
 

@@ -3,18 +3,28 @@
  */
 package main.java.com.goxr3plus.xr3converter.tools;
 
+import java.io.File;
+import java.util.List;
+
 import org.controlsfx.control.Notifications;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Labeled;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.util.Duration;
+import main.java.com.goxr3plus.xr3converter.application.Main;
+import main.java.com.goxr3plus.xr3converter.converter.model.Media;
 import main.java.com.goxr3plus.xr3converter.storage.RunTimeVars;
 
 /**
@@ -207,6 +217,51 @@ public final class JavaFXTools {
 	 */
 	public static ImageView getImageViewFromResourcesFolder(String imageName) {
 		return new ImageView(getImageFromResourcesFolder(imageName));
+	}
+	
+	/**
+	 * This method is used for the drag view of Media
+	 * 
+	 * @param dragBoard
+	 * @param media
+	 */
+	public static void setDragView(Dragboard dragBoard , Media media) {
+		SnapshotParameters params = new SnapshotParameters();
+		params.setFill(Color.TRANSPARENT);
+		dragBoard.setDragView(Main.dragViewer.updateMedia(media).snapshot(params, new WritableImage(150, 150)), 50, 0);
+	}
+	
+	/**
+	 * This view is used for plain text drag view
+	 * 
+	 * @param dragBoard
+	 * @param title
+	 */
+	public static void setPlainTextDragView(Dragboard dragBoard , String title) {
+		SnapshotParameters params = new SnapshotParameters();
+		params.setFill(Color.TRANSPARENT);
+		dragBoard.setDragView(Main.dragViewer.updateDropboxMedia(title).snapshot(params, new WritableImage(150, 150)), 50, 0);
+	}
+	
+	/**
+	 * Set System Clipboard
+	 * 
+	 * @param items
+	 */
+	public static void setClipBoard(List<File> items) {
+		//Get Native System ClipBoard
+		final Clipboard clipboard = Clipboard.getSystemClipboard();
+		final ClipboardContent content = new ClipboardContent();
+		
+		// PutFiles
+		content.putFiles(items);
+		
+		//Set the Content
+		clipboard.setContent(content);
+		
+		showNotification("Copied to Clipboard",
+				"Files copied to clipboard,you can paste them anywhere on the your system.\nFor example in Windows with [CTRL+V], in Mac[COMMAND+V]", Duration.seconds(3.5),
+				NotificationType.INFORMATION);
 	}
 	
 }
