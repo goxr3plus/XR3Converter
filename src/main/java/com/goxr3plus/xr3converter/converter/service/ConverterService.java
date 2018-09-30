@@ -1,7 +1,6 @@
 package main.java.com.goxr3plus.xr3converter.converter.service;
 
 import java.io.File;
-import java.util.List;
 
 import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -9,7 +8,6 @@ import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.util.Duration;
 import main.java.com.goxr3plus.xr3converter.converter.controller.ConverterController;
-import main.java.com.goxr3plus.xr3converter.converter.model.Media;
 import main.java.com.goxr3plus.xr3converter.tools.fx.JavaFXTools;
 import main.java.com.goxr3plus.xr3converter.tools.fx.NotificationType;
 import main.java.com.goxr3plus.xr3converter.tools.io.FileTools;
@@ -36,7 +34,6 @@ public class ConverterService extends Service<Boolean> {
 	private ConvertProgressListener listener = new ConvertProgressListener();
 	private final SimpleDoubleProperty convertProgress = new SimpleDoubleProperty();
 	private Encoder encoder;
-	private List<Media> mediaFiles;
 	
 	/**
 	 * The XPlayerController

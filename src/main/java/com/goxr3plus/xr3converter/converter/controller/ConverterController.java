@@ -1,6 +1,9 @@
 package main.java.com.goxr3plus.xr3converter.converter.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import com.jfoenix.controls.JFXButton;
 
@@ -20,6 +23,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import main.java.com.goxr3plus.xr3converter.application.FileAndFolderChooser;
+import main.java.com.goxr3plus.xr3converter.application.Main;
 import main.java.com.goxr3plus.xr3converter.converter.service.ConverterService;
 import main.java.com.goxr3plus.xr3converter.converter.service.InputService;
 import main.java.com.goxr3plus.xr3converter.storage.RunTimeVars;
@@ -41,6 +46,9 @@ public class ConverterController extends StackPane {
 	
 	@FXML
 	private ContextMenu toolsContextMenu;
+	
+	@FXML
+	private MenuItem addAudioVideoFiles;
 	
 	@FXML
 	private MenuItem addAudioFiles;
@@ -94,6 +102,8 @@ public class ConverterController extends StackPane {
 	
 	private MediaTableViewer tableViewer;
 	
+	FileAndFolderChooser fileChooser = new FileAndFolderChooser();
+	
 	// ---------Security---------------------------
 	
 	public enum WorkOnProgress {
@@ -142,8 +152,43 @@ public class ConverterController extends StackPane {
 			toolsContextMenu.show(toolsMenuButton, bounds.getMaxX(), bounds.getMinY());
 		});
 		
-		// loadingVBox
+		// LoadingVBox
 		loadingVBox.setVisible(false);
+		
+		// BrowserFolderButton
+		browserFolderButton.setOnAction(a -> {
+			File file = fileChooser.selectFolder(Main.window);
+			if (file != null)
+				inputService.start(Arrays.asList(file));
+		});
+		
+		// addAudioVideoFiles
+		addAudioVideoFiles.setOnAction(a -> {
+			List<File> list = fileChooser.importAudioAndVideoFiles(Main.window);
+			if (list != null && !list.isEmpty())
+				inputService.start(list);
+		});
+		
+		// addAudioFiles
+		addAudioFiles.setOnAction(a -> {
+			List<File> list = fileChooser.importAudioFiles(Main.window);
+			if (list != null && !list.isEmpty())
+				inputService.start(list);
+		});
+		
+		// addVideoFiles
+		addVideoFiles.setOnAction(a -> {
+			List<File> list = fileChooser.importVideoFiles(Main.window);
+			if (list != null && !list.isEmpty())
+				inputService.start(list);
+		});
+		
+		// Add Folder
+		addFolder.setOnAction(a -> {
+			File file = fileChooser.selectFolder(Main.window);
+			if (file != null)
+				inputService.start(Arrays.asList(file));
+		});
 		
 		// ConvertButton
 		convertButton.setOnAction(a -> {
@@ -223,10 +268,9 @@ public class ConverterController extends StackPane {
 	public void setDescriptionArea(TextArea descriptionArea) {
 		this.descriptionArea = descriptionArea;
 	}
-
+	
 	public TextField getOutputFolderTextField() {
 		return outputFolderTextField;
 	}
-
 	
 }

@@ -35,6 +35,11 @@
                            <contextMenu>
                               <ContextMenu fx:id="toolsContextMenu">
                                  <items>
+                                    <MenuItem fx:id="addAudioVideoFiles" mnemonicParsing="false" text="Add Audio/Video Files">
+                                       <graphic>
+                                          <FontIcon iconColor="#e8ac14" iconLiteral="typ-plus" iconSize="24" />
+                                       </graphic>
+                                    </MenuItem>
                                     <MenuItem fx:id="addAudioFiles" mnemonicParsing="false" text="Add Audio Files">
                                        <graphic>
                                           <FontIcon iconColor="#e8ac14" iconLiteral="typ-plus" iconSize="24" />
@@ -87,13 +92,8 @@
                      <children>
                         <Label styleClass="white-black-label" text="Save to folder:" />
                         <Label layoutX="10.0" layoutY="15.0" styleClass="white-black-label" text="Output Format:" GridPane.rowIndex="1" />
-                        <TextField fx:id="outputFolderTextField" editable="false" maxWidth="1.7976931348623157E308" promptText="press browse..." styleClass="dark-text-field" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
-                        <MenuButton fx:id="outputExtension" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="dark-menu-button" text=".mp3" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Action 1" />
-                            <MenuItem mnemonicParsing="false" text="Action 2" />
-                          </items>
-                        </MenuButton>
+                        <TextField fx:id="outputFolderTextField" editable="false" focusTraversable="false" maxWidth="1.7976931348623157E308" promptText="press browse..." styleClass="dark-text-field" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
+                        <MenuButton fx:id="outputExtension" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="dark-menu-button" text=".mp3" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
                         <JFXButton fx:id="browserFolderButton" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="jfx-button-yellow" text="Browse" GridPane.columnIndex="2" GridPane.rowSpan="2">
                            <GridPane.margin>
                               <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
