@@ -15,6 +15,19 @@ Soon i will pass to Java 11 though and will provide installers .... (maybe)
 
 https://github.com/goxr3plus/XR3Converter/releases/download/V3.1/XR3Converter.Update.1.0.0.zip
 
+# How to run ?
+
+The zip contains a Jar file so :
+
+> Double Click the Jar File 
+
+or
+
+> Open terminal and type 
+
+> java -jar <jarNameBasedOnVersion>.jar
+  
+
 
 ## Contribute
 Currently designing the user interface . Any reccomendations welcome :)
