@@ -3,7 +3,7 @@
 <h3 align="center" > XR3Converter ( Application )</h3>
  
 
-| DJ UI | Chromium Web Browser 
+| Converting in Progress | Files Explorer UI
 |:-:|:-:|
 | ![screenshot_2](https://user-images.githubusercontent.com/20374208/46262781-9f710b80-c50e-11e8-8d85-dbb2ac68634e.jpg) | ![screenshot_3](https://user-images.githubusercontent.com/20374208/46262782-a009a200-c50e-11e8-9e96-4b6681b2a14e.jpg) |
 
